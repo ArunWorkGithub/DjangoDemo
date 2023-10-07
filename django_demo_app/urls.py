@@ -18,9 +18,14 @@ from django.contrib import admin
 from django.urls import path
 import django_demo_app.view as drink_view
 from django_demo_myapp import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('hello/', views.hello),
     path('admin/', admin.site.urls),
-    path('drinks/', drink_view.drinks_list)
+    path('drinks/', drink_view.get_drinks_list),
+    path('drink', drink_view.insert_drink),
+    path('drinks/<int:id>', drink_view.drink_detail),
 ] 
+
+urlpatterns = format_suffix_patterns(urlpatterns)
